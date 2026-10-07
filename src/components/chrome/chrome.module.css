@@ -1,0 +1,230 @@
+.header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: var(--header-h);
+  padding: 0 calc(var(--gutter) + env(safe-area-inset-right)) 0 calc(var(--gutter) + env(safe-area-inset-left));
+  color: var(--ink);
+  background: rgb(246 247 250 / 0.78);
+  backdrop-filter: saturate(1.6) blur(16px);
+  -webkit-backdrop-filter: saturate(1.6) blur(16px);
+  border-bottom: 1px solid rgb(215 218 229 / 0.7);
+}
+
+.brand {
+  display: inline-flex;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 10px;
+  color: var(--ink-2);
+  font-size: var(--fs-14);
+  font-weight: 550;
+  text-decoration: none;
+  transition:
+    color var(--t-fast) var(--ease),
+    background var(--t-fast) var(--ease);
+}
+
+.nav .navCta {
+  margin-left: 4px;
+  background: var(--ink);
+  color: #fff;
+}
+
+@media (max-width: 599px) {
+  .nav a {
+    padding: 0 12px;
+    font-size: var(--fs-13);
+  }
+}
+
+/* ---------- Cierre: créditos ---------- */
+
+/* Sin bloque sólido: el cierre continúa el fondo de la escena con un halo tenue. */
+.closing {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(64px, 9vw, 112px) calc(var(--gutter) + env(safe-area-inset-right)) calc(28px + env(safe-area-inset-bottom)) calc(var(--gutter) + env(safe-area-inset-left));
+  border-top: 1px solid var(--line);
+  background: linear-gradient(180deg, #eef0f6 0%, var(--bg) 40%);
+}
+
+.closingGlow {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  width: min(900px, 120vw);
+  height: 560px;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgb(110 86 207 / 0.13), rgb(91 91 214 / 0.06) 55%, transparent);
+  pointer-events: none;
+}
+
+.closingInner {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* El monograma de Black Crow, protagonista de los créditos */
+.crowMark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(84px, 10vw, 120px);
+  transition: transform var(--t-slow) var(--ease);
+}
+
+.crowMark::before {
+  content: "";
+  position: absolute;
+  inset: -38%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(255 255 255 / 0.95), rgb(255 255 255 / 0));
+  z-index: -1;
+}
+
+.crowIcon {
+  width: 100%;
+  height: auto;
+  animation: crowIn 1.2s var(--ease) both;
+}
+
+@keyframes crowIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+  }
+}
+
+.closingTitle {
+  margin-top: clamp(28px, 4vw, 40px);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" var(--wdth-display);
+  font-size: clamp(2rem, 1.2rem + 2.6vw, 3.4rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: var(--track-display);
+  text-wrap: balance;
+}
+
+@media (max-width: 420px) {
+  .creditsCtas {
+    width: 100%;
+  }
+
+  .creditsCtas a {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+}
+
+.creditsCtas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.closingCta,
+.closingSecondary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 22px;
+  border-radius: var(--r-m);
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background var(--t-fast) var(--ease),
+    border-color var(--t-fast) var(--ease),
+    color var(--t-fast) var(--ease);
+}
+
+.closingCta {
+  background: var(--ink);
+  color: #fff;
+}
+
+.closingSecondary {
+  border: 1px solid var(--line-2);
+  background: rgb(255 255 255 / 0.7);
+  color: var(--ink);
+}
+
+.footer {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: var(--maxw);
+  margin: clamp(56px, 7vw, 80px) auto 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  color: var(--ink-3);
+  font-size: var(--fs-13);
+}
+
+.footerLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+}
+
+.footer a {
+  color: var(--ink-2);
+  text-decoration: none;
+}
+
+/* Hover solo con ratón: en táctil no quedan estados pegados */
+@media (hover: hover) {
+  .nav a:hover {
+    color: var(--ink);
+    background: rgb(19 21 44 / 0.05);
+  }
+
+  .nav .navCta:hover {
+    background: var(--primary);
+    color: #fff;
+  }
+
+  .crowMark:hover {
+    transform: translateY(-4px) scale(1.03);
+  }
+
+  .closingCta:hover {
+    background: var(--primary);
+  }
+
+  .closingSecondary:hover {
+    border-color: var(--ink);
+  }
+
+  .footer a:hover {
+    color: var(--ink);
+  }
+}

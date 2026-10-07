@@ -1,0 +1,5 @@
+Instrument Sans — Copyright 2022 The Instrument Sans Project Authors
+(https://github.com/Instrument/instrument-sans). Licencia SIL Open Font
+License 1.1 (https://openfontlicense.org). Cortes estáticos (seminegrita
+semicondensada y media, subconjunto latino) generados a partir de la fuente
+variable para la imagen Open Graph.

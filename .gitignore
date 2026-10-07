@@ -1,0 +1,21 @@
+# dependencias
+node_modules/
+
+# next.js
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# pruebas
+coverage/
+
+# entorno — solo se versiona el ejemplo
+.env
+.env.*
+!.env.example
+
+# varios
+.DS_Store
+*.log
+.vercel
