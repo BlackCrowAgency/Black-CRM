@@ -229,7 +229,7 @@ export const ACTORS = {
   whLim: "Almacén · M. Quispe",
   rcvLim: "Almacén · R. Salazar",
   buyer: "Compras · A. Torres",
-  blackCrm: "Black CRM",
+  crowCrm: "Crow CRM",
   operator: "Tú",
   // Reservados para sucursales futuras.
   marketplace: "Marketplace",

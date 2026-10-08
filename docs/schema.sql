@@ -1,4 +1,4 @@
--- Black CRM · esquema base para PostgreSQL (versión real).
+-- Crow CRM · esquema base para PostgreSQL (versión real).
 -- El stock no se guarda: se calcula sumando movimientos (vista stock_actual).
 
 create table locations (

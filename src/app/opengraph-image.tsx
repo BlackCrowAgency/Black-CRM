@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
+import { CROW_LOGOTYPE, CROW_MARK } from "@/components/chrome/marks";
 import { HERO_SKU } from "@/domain/catalog";
 import { computeEngine, groupExtra } from "@/domain/engine";
 import { fmtMoney, fmtPct } from "@/domain/format";
@@ -10,7 +11,7 @@ import { salesSummary } from "@/domain/perf";
 import { alertsOf, productViews, whenText } from "@/domain/simple";
 import { NOW } from "@/domain/time";
 
-export const alt = "Black CRM, el CRM que controla tu inventario: panel con stock, alertas y crecimiento de ventas, impulsado por IA.";
+export const alt = "Crow CRM, el CRM que controla tu inventario: panel con stock, alertas y crecimiento de ventas, impulsado por IA.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -83,14 +84,13 @@ export default async function OpengraphImage() {
     >
       {/* Columna de texto */}
       <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: 560, padding: "64px 0 60px 72px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-          <div style={{ display: "flex", flexWrap: "wrap", width: 30, gap: 4 }}>
-            {[C.ink, "#12a594", C.ink, C.ink].map((c, i) => (
-              <div key={i} style={{ width: 13, height: 13, borderRadius: 4, backgroundColor: c }} />
-            ))}
-          </div>
-          <div style={{ display: "flex", fontFamily: "Display", fontSize: 34, letterSpacing: -1 }}>Black</div>
-          <div style={{ display: "flex", padding: "3px 9px", borderRadius: 7, backgroundColor: C.ink, color: "#fff", fontSize: 16 }}>CRM</div>
+        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+          <svg width={(44 * CROW_MARK.width) / CROW_MARK.height} height={44} viewBox={`0 0 ${CROW_MARK.width} ${CROW_MARK.height}`}>
+            <path d={CROW_MARK.d} fill={C.ink} fillRule="evenodd" />
+          </svg>
+          <svg width={(25 * CROW_LOGOTYPE.width) / CROW_LOGOTYPE.height} height={25} viewBox={`0 0 ${CROW_LOGOTYPE.width} ${CROW_LOGOTYPE.height}`}>
+            <path d={CROW_LOGOTYPE.d} fill={C.ink} fillRule="evenodd" />
+          </svg>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
@@ -206,7 +206,7 @@ export default async function OpengraphImage() {
       >
         <div style={{ display: "flex", alignItems: "center", gap: 8, color: C.violetInk, fontSize: 18 }}>
           <Spark size={18} color={C.violet} />
-          Black CRM IA
+          Crow CRM IA
         </div>
         <div style={{ display: "flex", fontSize: 20, lineHeight: 1.35, color: C.ink }}>
           {`Repón ${rec} pares de ${hero.product.name}: ${hero.runOutAt ? `se agota ${whenText(hero.runOutAt, NOW)}` : "el stock está bajo"}.`}

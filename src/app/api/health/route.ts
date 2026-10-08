@@ -6,7 +6,7 @@ import { integrationStatus, isLive } from "@/server/integrations/registry";
 export function GET() {
   const env = serverEnv();
   return NextResponse.json(
-    { service: "black-crm", mode: isLive(env) ? "live" : "demo", integrations: integrationStatus(env) },
+    { service: "crow-crm", mode: isLive(env) ? "live" : "demo", integrations: integrationStatus(env) },
     { headers: { "Cache-Control": "no-store" } },
   );
 }

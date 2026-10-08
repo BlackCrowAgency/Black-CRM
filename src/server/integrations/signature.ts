@@ -2,7 +2,7 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 
 /**
  * Firmas HMAC-SHA256 de webhooks. Shopify y WooCommerce firman el cuerpo
- * crudo en base64; Black CRM usa hex con prefijo `sha256=` para POS e ingesta.
+ * crudo en base64; Crow CRM usa hex con prefijo `sha256=` para POS e ingesta.
  */
 
 export function hmac(body: string, secret: string, encoding: "base64" | "hex" = "hex") {

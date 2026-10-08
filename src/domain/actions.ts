@@ -109,7 +109,7 @@ export function createTransfer(params: { sku: string; from: LocationId; to: Loca
     actor: ACTORS.operator,
     doc: id,
     direction: "out",
-    note: "Transferencia aprobada desde Black CRM",
+    note: "Transferencia aprobada desde Crow CRM",
   };
   return { order, out };
 }

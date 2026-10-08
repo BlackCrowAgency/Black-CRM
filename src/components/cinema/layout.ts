@@ -1,5 +1,5 @@
 /**
- * Geometría de la escena: el panel de Black CRM en un espacio de diseño fijo
+ * Geometría de la escena: el panel de Crow CRM en un espacio de diseño fijo
  * (1280 × 820) y una «cámara» por capítulo. La cámara se interpola con el
  * scroll y se aplica como una sola transformación 3D sobre el panel.
  */

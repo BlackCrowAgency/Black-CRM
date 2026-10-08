@@ -3,7 +3,7 @@ import { z } from "zod";
 
 /**
  * Configuración privada (solo servidor). Todas las variables son opcionales:
- * sin valores, Black CRM funciona como demo con datos ficticios y las rutas de
+ * sin valores, Crow CRM funciona como demo con datos ficticios y las rutas de
  * integración responden en modo de prueba sin enviar nada a terceros.
  * Detalle de cada variable en docs/INTEGRACIONES.md y .env.example.
  */
@@ -13,12 +13,12 @@ const optional = z.preprocess(blank, z.string().trim().optional());
 const optionalUrl = z.preprocess(blank, z.url().optional());
 
 const schema = z.object({
-  BLACK_CRM_DATA_SOURCE: z.preprocess(blank, z.enum(["demo", "postgres"]).default("demo")),
+  CROW_CRM_DATA_SOURCE: z.preprocess(blank, z.enum(["demo", "postgres"]).default("demo")),
   DATABASE_URL: optional,
-  BLACK_CRM_TIMEZONE: z.preprocess(blank, z.string().default("America/Lima")),
-  BLACK_CRM_CURRENCY: z.preprocess(blank, z.string().length(3).default("PEN")),
-  BLACK_CRM_ALLOWED_ORIGINS: optional,
-  BLACK_CRM_INGEST_SECRET: optional,
+  CROW_CRM_TIMEZONE: z.preprocess(blank, z.string().default("America/Lima")),
+  CROW_CRM_CURRENCY: z.preprocess(blank, z.string().length(3).default("PEN")),
+  CROW_CRM_ALLOWED_ORIGINS: optional,
+  CROW_CRM_INGEST_SECRET: optional,
 
   SHOPIFY_STORE_DOMAIN: optional,
   SHOPIFY_ADMIN_ACCESS_TOKEN: optional,

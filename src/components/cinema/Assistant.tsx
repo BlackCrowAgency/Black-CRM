@@ -32,7 +32,7 @@ type Phase = "idle" | "thinking" | "answer" | "acting" | "done" | "undoing" | "u
 const list = (names: string[]) => (names.length > 1 ? `${names.slice(0, -1).join(", ")} y ${names[names.length - 1]}` : (names[0] ?? ""));
 
 /**
- * Black CRM IA: responde con los datos del panel y, al pedirle la acción, la
+ * Crow CRM IA: responde con los datos del panel y, al pedirle la acción, la
  * ejecuta sobre el panel de la derecha contando cada paso.
  */
 export function Assistant({
@@ -188,7 +188,7 @@ export function Assistant({
     <div className={styles.assistant}>
       <p className={styles.assistantHead}>
         <Sparkles size={16} aria-hidden="true" />
-        Black CRM IA
+        Crow CRM IA
         {dirty && !busy ? (
           <button type="button" className={styles.resetPanel} onClick={() => startUndo("all")}>
             <RotateCcw size={13} aria-hidden="true" /> Restablecer panel

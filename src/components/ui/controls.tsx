@@ -6,7 +6,7 @@ import type { SimpleState } from "@/domain/simple";
 import { useAnimatedNumber } from "@/hooks/useAnimatedNumber";
 import { useInView } from "@/hooks/useInView";
 import { useReducedMotion } from "@/hooks/useMediaQuery";
-import { useBlackCrm, type Toast } from "@/store/blackCrm";
+import { useCrowCrm, type Toast } from "@/store/crowCrm";
 import styles from "./ui.module.css";
 
 /* ---------- Botones ---------- */
@@ -276,8 +276,8 @@ export function Sheet({ open, onClose, label, children }: { open: boolean; onClo
 const TOAST_ICON = { info: Info, ok: CircleCheck, warn: TriangleAlert } as const;
 
 function ToastItem({ toast }: { toast: Toast }) {
-  const dismiss = useBlackCrm((s) => s.dismiss);
-  const openProduct = useBlackCrm((s) => s.openProduct);
+  const dismiss = useCrowCrm((s) => s.dismiss);
+  const openProduct = useCrowCrm((s) => s.openProduct);
   useEffect(() => {
     const id = window.setTimeout(() => dismiss(toast.id), 5200);
     return () => window.clearTimeout(id);
@@ -305,7 +305,7 @@ function ToastItem({ toast }: { toast: Toast }) {
 }
 
 export function Toasts() {
-  const toasts = useBlackCrm((s) => s.toasts);
+  const toasts = useCrowCrm((s) => s.toasts);
   return (
     <div className={styles.toasts} role="status" aria-live="polite">
       {toasts.map((t) => (

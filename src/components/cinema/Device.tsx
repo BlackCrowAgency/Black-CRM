@@ -8,6 +8,7 @@ import { CATEGORIES, productOf } from "@/domain/catalog";
 import { fmtDate, fmtDateShort, fmtDays, fmtInt, fmtMoney, fmtMoneyShort, fmtPct, fmtRelative } from "@/domain/format";
 import { whenText } from "@/domain/simple";
 import { DAY, NOW, STORY_START } from "@/domain/time";
+import { Logo } from "@/components/chrome/Logo";
 import { ProductArt } from "@/components/product/ProductArt";
 import { movementTitle } from "@/components/inventory/words";
 import type { CinemaData, Point } from "./data";
@@ -44,7 +45,7 @@ function Module({ id, children, className, tone, spot }: { id: ModuleId; childre
 }
 
 /**
- * El panel de Black CRM tal como lo usa el equipo: barra superior, indicadores,
+ * El panel de Crow CRM tal como lo usa el equipo: barra superior, indicadores,
  * stock del producto, pronóstico, alerta, pedido sugerido y crecimiento.
  */
 export function Device({ data, interactive, panel, onOrder }: { data: CinemaData; interactive: boolean; panel: PanelState; onOrder(): void }) {
@@ -59,13 +60,8 @@ export function Device({ data, interactive, panel, onOrder }: { data: CinemaData
       <div className={styles.base} />
 
       <Module id="topbar" className={styles.topbar}>
-        <span className={styles.appMark} aria-hidden="true">
-          <i />
-          <i />
-          <i />
-          <i />
-        </span>
-        <span className={styles.appName}>Black</span>
+        <Logo size={22} />
+        <span className={styles.appName}>Crow</span>
         <span className={styles.crmTag}>CRM</span>
         <span className={styles.store}>Tienda Miraflores</span>
         <span className={styles.searchPill}>

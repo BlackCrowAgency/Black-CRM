@@ -59,7 +59,7 @@ describe("historia de Zapatillas Urban", () => {
     expect(Math.round(v.daysLeft!)).toBe(3);
   });
 
-  it("Black CRM recomienda reponer 40 pares (4 cajas de 10)", () => {
+  it("Crow CRM recomienda reponer 40 pares (4 cajas de 10)", () => {
     const rec = baseEngine().recByKey.get(HERO_KEY);
     expect(rec?.qty).toBe(40);
     expect(rec?.packs).toBe(4);

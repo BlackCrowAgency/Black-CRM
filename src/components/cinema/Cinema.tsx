@@ -10,7 +10,7 @@ import { NOW, STORY_START } from "@/domain/time";
 import { useReducedMotion } from "@/hooks/useMediaQuery";
 import { useEngine } from "@/components/inventory/EngineProvider";
 import { movementTitle, unitsWord } from "@/components/inventory/words";
-import { useBlackCrm } from "@/store/blackCrm";
+import { useCrowCrm } from "@/store/crowCrm";
 import { Assistant, type QuestionId } from "./Assistant";
 import { useCinemaData } from "./data";
 import { Device, PANEL_INITIAL, type PanelState, type ScrubKey } from "./Device";
@@ -43,7 +43,7 @@ const plateau = (raw: number) => {
 const span = (raw: number, a: number, b: number) => clamp01((raw - a) / (b - a));
 
 /**
- * Una sola escena fija: el panel de Black CRM en el centro se transforma
+ * Una sola escena fija: el panel de Crow CRM en el centro se transforma
  * capítulo a capítulo (despiece, acercamientos, giros) mientras el texto
  * cuenta qué hace cada parte.
  */
@@ -60,8 +60,8 @@ export function Cinema() {
   const [panel, setPanel] = useState<PanelState>(PANEL_INITIAL);
   const reduce = useReducedMotion();
   const { views } = useEngine();
-  const prepareReplenishment = useBlackCrm((s) => s.prepareReplenishment);
-  const cancelOrders = useBlackCrm((s) => s.cancelOrders);
+  const prepareReplenishment = useCrowCrm((s) => s.prepareReplenishment);
+  const cancelOrders = useCrowCrm((s) => s.cancelOrders);
   const spotTimer = useRef(0);
   /** Pedidos creados en la sesión: los de la IA y el del botón del panel (para poder deshacerlos). */
   const [aiOrders, setAiOrders] = useState<string[]>([]);
@@ -417,7 +417,7 @@ export function Cinema() {
         <>
           <Assistant active={chapter === LAST} data={data} act={act} undo={undo} dirty={dirty} />
           <a className={styles.contactLink} href="#contacto">
-            Quiero Black CRM para mi negocio
+            Quiero Crow CRM para mi negocio
           </a>
         </>
       ),
@@ -425,7 +425,7 @@ export function Cinema() {
   ];
 
   return (
-    <section id="inicio" ref={sectionRef} className={styles.cinema} aria-label="Cómo funciona Black CRM">
+    <section id="inicio" ref={sectionRef} className={styles.cinema} aria-label="Cómo funciona Crow CRM">
       <div ref={stageRef} className={styles.stage} data-chapter={chapter}>
         <div className={styles.atmosphere} aria-hidden="true" />
         <div ref={safeRef} className={styles.safeProbe} aria-hidden="true" />

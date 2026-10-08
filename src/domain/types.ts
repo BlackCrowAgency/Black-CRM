@@ -1,5 +1,5 @@
 /**
- * Modelo de dominio de Black CRM.
+ * Modelo de dominio de Crow CRM.
  *
  * Es el mismo contrato que usaría la versión real: los adaptadores de
  * e-commerce, POS o ERP normalizan sus datos a estas formas (ver src/server).

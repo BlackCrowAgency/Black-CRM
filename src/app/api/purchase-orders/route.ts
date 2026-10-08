@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
     const body = JSON.stringify(payload);
     const res = await fetch(env.SUPPLIER_WEBHOOK_URL, {
       method: "POST",
-      headers: { "Content-Type": "application/json", "X-Black-CRM-Signature": `sha256=${hmac(body, env.SUPPLIER_WEBHOOK_SECRET)}` },
+      headers: { "Content-Type": "application/json", "X-Crow-CRM-Signature": `sha256=${hmac(body, env.SUPPLIER_WEBHOOK_SECRET)}` },
       body,
     });
     return NextResponse.json({ mode: "live", sent: res.ok, order: payload }, { status: res.ok ? 201 : 502 });

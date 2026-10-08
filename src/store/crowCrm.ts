@@ -32,7 +32,7 @@ export interface Toast {
   sku?: string;
 }
 
-interface BlackCrmState {
+interface CrowCrmState {
   simNow: number;
   asOf: number;
   live: boolean;
@@ -84,7 +84,7 @@ interface BlackCrmState {
 const dataset = getDataset();
 const BASE_ID = 310400 + dataset.movements.length;
 
-function applyDrafts(state: Pick<BlackCrmState, "extra" | "nextId">, drafts: MovementDraft[]) {
+function applyDrafts(state: Pick<CrowCrmState, "extra" | "nextId">, drafts: MovementDraft[]) {
   const extra = [...state.extra];
   let nextId = state.nextId;
   const applied: Movement[] = [];
@@ -100,12 +100,12 @@ function applyDrafts(state: Pick<BlackCrmState, "extra" | "nextId">, drafts: Mov
   return { extra, nextId, applied };
 }
 
-const pushToast = (s: BlackCrmState, toast: Omit<Toast, "id">) => ({
+const pushToast = (s: CrowCrmState, toast: Omit<Toast, "id">) => ({
   toasts: [...s.toasts, { ...toast, id: s.toastSeq }].slice(-3),
   toastSeq: s.toastSeq + 1,
 });
 
-export const useBlackCrm = create<BlackCrmState>()((set, get) => ({
+export const useCrowCrm = create<CrowCrmState>()((set, get) => ({
   simNow: NOW,
   asOf: NOW,
   live: true,
@@ -155,10 +155,10 @@ export const useBlackCrm = create<BlackCrmState>()((set, get) => ({
     all.sort((a, b) => a.t - b.t);
     const { extra, nextId, applied } = applyDrafts(s, all);
     const arrived = new Set(arriving.filter((o) => applied.some((m) => m.doc === o.id)).map((o) => o.id));
-    let next: Partial<BlackCrmState> = {};
+    let next: Partial<CrowCrmState> = {};
     for (const o of arriving) {
       if (!arrived.has(o.id)) continue;
-      next = { ...next, ...pushToast({ ...s, ...next } as BlackCrmState, { tone: "ok", title: "Recepción registrada", body: `+${o.qty} ${productOf(o.sku).name}`, sku: o.sku }) };
+      next = { ...next, ...pushToast({ ...s, ...next } as CrowCrmState, { tone: "ok", title: "Recepción registrada", body: `+${o.qty} ${productOf(o.sku).name}`, sku: o.sku }) };
     }
     set({
       ...next,

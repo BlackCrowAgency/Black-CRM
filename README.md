@@ -1,9 +1,9 @@
-# Black CRM
+# Crow CRM
 
 Demo de Black Crow: control de inventario en tiempo real para negocios que
 venden productos físicos.
 
-**Venta → stock → alerta → reposición.** Cada venta actualiza el stock; Black CRM
+**Venta → stock → alerta → reposición.** Cada venta actualiza el stock; Crow CRM
 detecta los productos en riesgo y propone la reposición antes del quiebre.
 
 El negocio es ficticio: **Rumbo**, una tienda urbana con venta online y a
@@ -33,7 +33,7 @@ Node 22.12 o superior. No necesita variables de entorno (ver `.env.example`).
 
 Una sola escena cinematográfica (`src/components/cinema`) y un cierre breve.
 
-El panel de Black CRM ocupa el centro de un escenario fijo y se transforma con el
+El panel de Crow CRM ocupa el centro de un escenario fijo y se transforma con el
 scroll (una transformación 3D tipo cámara, más profundidad por pieza). Cada
 capítulo lleva una sola frase; el panel cuenta el resto.
 
@@ -44,9 +44,9 @@ capítulo lleva una sola frase; el panel cuenta el resto.
 | Alertas | Te avisa antes del quiebre. | Adelanta la alerta de quiebre. |
 | Pronóstico | Pronostica cuánto vas a vender. | El gráfico descubre la proyección. |
 | Reposición | Repone con un clic. | El pedido se arma caja por caja. |
-| Estadísticas | Estadísticas que te dicen qué hacer. (Impulsado por IA) | Panel completo y utilizable, con el asistente Black CRM IA. |
+| Estadísticas | Estadísticas que te dicen qué hacer. (Impulsado por IA) | Panel completo y utilizable, con el asistente Crow CRM IA. |
 
-**Black CRM IA** responde tres preguntas con los datos del motor y, al pedirle la
+**Crow CRM IA** responde tres preguntas con los datos del motor y, al pedirle la
 acción, la ejecuta sobre el panel contando cada paso:
 
 - «¿Qué repongo esta semana?» → crea los pedidos sugeridos: la alerta pasa a

@@ -1,4 +1,4 @@
-# Black CRM real: integraciones
+# Crow CRM real: integraciones
 
 La demo funciona sola con datos ficticios. Esta guía explica cómo pasar a un
 sistema real sin cambiar la experiencia: los mismos componentes leen los mismos
@@ -38,7 +38,7 @@ Almacén / ERP ─────────┘                                   
 - `GET /api/health` — modo (`demo`/`live`) y qué integraciones están configuradas.
 - `POST /api/webhooks/shopify` — firma `X-Shopify-Hmac-Sha256` (base64 del cuerpo crudo).
 - `POST /api/webhooks/woocommerce` — firma `X-WC-Webhook-Signature` (base64).
-- `POST /api/webhooks/pos` — firma `X-Black-CRM-Signature: sha256=<hex>`. Cuerpo: `{ ticketId, store, closedAt, items: [{ sku, qty }] }` (qty negativa = devolución).
+- `POST /api/webhooks/pos` — firma `X-Crow-CRM-Signature: sha256=<hex>`. Cuerpo: `{ ticketId, store, closedAt, items: [{ sku, qty }] }` (qty negativa = devolución).
 - `POST /api/webhooks/ingest` — eventos ya normalizados `{ events: [...] }`, misma firma. Útil para el almacén o el ERP.
 - `GET /api/products/:sku` — lo mismo que muestra la ficha: disponibles, vendidas, estado, días que alcanza y reposición sugerida.
 - `POST /api/purchase-orders` — `{ sku, quantity }`. En demo devuelve el pedido; en modo real lo envía por correo o webhook.
@@ -52,12 +52,12 @@ Todas están en `.env.example` con su explicación.
 | Variable | Para qué sirve |
 | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | URL canónica (SEO, Open Graph, sitemap). |
-| `NEXT_PUBLIC_BLACK_CRM_MODE` | `demo` hoy. `live` queda reservado para que la interfaz cargue desde la API propia. |
+| `NEXT_PUBLIC_CROW_CRM_MODE` | `demo` hoy. `live` queda reservado para que la interfaz cargue desde la API propia. |
 | `NEXT_PUBLIC_CONTACT_URL`, `NEXT_PUBLIC_BLACKCROW_URL` | Enlaces del cierre. |
-| `BLACK_CRM_DATA_SOURCE`, `DATABASE_URL` | Base de datos PostgreSQL del libro de movimientos. |
-| `BLACK_CRM_TIMEZONE`, `BLACK_CRM_CURRENCY` | Cortes diarios y moneda del negocio. |
-| `BLACK_CRM_ALLOWED_ORIGINS` | CORS para la API. |
-| `BLACK_CRM_INGEST_SECRET` | Firma de `/api/webhooks/ingest`. |
+| `CROW_CRM_DATA_SOURCE`, `DATABASE_URL` | Base de datos PostgreSQL del libro de movimientos. |
+| `CROW_CRM_TIMEZONE`, `CROW_CRM_CURRENCY` | Cortes diarios y moneda del negocio. |
+| `CROW_CRM_ALLOWED_ORIGINS` | CORS para la API. |
+| `CROW_CRM_INGEST_SECRET` | Firma de `/api/webhooks/ingest`. |
 | `SHOPIFY_*` | Catálogo, inventario y pedidos de Shopify. |
 | `WOOCOMMERCE_*` | Catálogo y pedidos de WooCommerce. |
 | `POS_WEBHOOK_SECRET` | Firma de los tickets del POS. |
@@ -69,7 +69,7 @@ Todas están en `.env.example` con su explicación.
 
 ## Pasos para un negocio real
 
-1. **Base de datos.** Crear el esquema de `docs/schema.sql` en PostgreSQL y definir `DATABASE_URL` y `BLACK_CRM_DATA_SOURCE=postgres`.
+1. **Base de datos.** Crear el esquema de `docs/schema.sql` en PostgreSQL y definir `DATABASE_URL` y `CROW_CRM_DATA_SOURCE=postgres`.
 2. **Catálogo.** Importar productos desde la tienda online o el ERP (nombre, foto, categoría, precio, costo, proveedor, caja de compra). Las fotos reemplazan las ilustraciones de la demo en `ProductArt`.
 3. **Stock inicial.** Un conteo por ubicación entra como movimiento de ajuste; desde ahí todo es incremental.
 4. **Ventas.** Conectar los webhooks de Shopify o WooCommerce y el POS. Cada venta baja el stock en el momento.

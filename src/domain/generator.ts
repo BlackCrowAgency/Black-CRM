@@ -361,7 +361,7 @@ export function generateDataset(): Dataset {
       state[HERO_LOC].onOrder += HERO_PREVIOUS_RECEIPT.qty;
     }
 
-    // Parámetros de la política de reposición simulada (lo que el negocio hacía antes de Black CRM).
+    // Parámetros de la política de reposición simulada (lo que el negocio hacía antes de Crow CRM).
     const policyParams = (loc: LocationId, li: number, d: number) => {
       const rate = expectedDemand(p, li, d, false);
       const lead = loc === "LIM" ? p.leadTime : LOCATIONS[loc].transitToLim + 1;

@@ -9,8 +9,8 @@ import { verifySignature } from "@/server/integrations/signature";
  * Entrada única de movimientos desde otros sistemas:
  *   POST /api/webhooks/shopify      (X-Shopify-Hmac-Sha256, base64)
  *   POST /api/webhooks/woocommerce  (X-WC-Webhook-Signature, base64)
- *   POST /api/webhooks/pos          (X-Black-CRM-Signature: sha256=…)
- *   POST /api/webhooks/ingest       (X-Black-CRM-Signature: sha256=…) eventos ya normalizados
+ *   POST /api/webhooks/pos          (X-Crow-CRM-Signature: sha256=…)
+ *   POST /api/webhooks/ingest       (X-Crow-CRM-Signature: sha256=…) eventos ya normalizados
  *
  * Cada fuente se verifica, se traduce al evento normalizado y se valida.
  * En modo demo responde qué registraría, sin guardar nada.
@@ -27,8 +27,8 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
   const config = {
     shopify: { header: "x-shopify-hmac-sha256", secret: env.SHOPIFY_WEBHOOK_SECRET, encoding: "base64" as const },
     woocommerce: { header: "x-wc-webhook-signature", secret: env.WOOCOMMERCE_WEBHOOK_SECRET, encoding: "base64" as const },
-    pos: { header: "x-black-crm-signature", secret: env.POS_WEBHOOK_SECRET, encoding: "hex" as const },
-    ingest: { header: "x-black-crm-signature", secret: env.BLACK_CRM_INGEST_SECRET, encoding: "hex" as const },
+    pos: { header: "x-crow-crm-signature", secret: env.POS_WEBHOOK_SECRET, encoding: "hex" as const },
+    ingest: { header: "x-crow-crm-signature", secret: env.CROW_CRM_INGEST_SECRET, encoding: "hex" as const },
   }[source];
   if (!config) return NextResponse.json({ error: "Fuente desconocida" }, { status: 404 });
   if (!config.secret) return NextResponse.json({ error: "Integración no configurada" }, { status: 503 });
@@ -48,6 +48,6 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     return NextResponse.json({ error: "Contenido no válido para esta fuente" }, { status: 422 });
   }
 
-  // La persistencia (Postgres, idempotente por externalId) se activa con BLACK_CRM_DATA_SOURCE=postgres.
+  // La persistencia (Postgres, idempotente por externalId) se activa con CROW_CRM_DATA_SOURCE=postgres.
   return NextResponse.json({ mode: isLive(env) ? "live" : "demo", stored: false, accepted: events.length, events }, { status: 202 });
 }

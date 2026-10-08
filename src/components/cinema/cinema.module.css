@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Escena: un escenario fijo con el panel de Black CRM en el centro. La cámara
+   Escena: un escenario fijo con el panel de Crow CRM en el centro. La cámara
    (transform 3D del panel) y las variables --explode, --f, --draw, --grow
    llegan desde el scroll.
    ========================================================================== */
@@ -193,23 +193,6 @@
   border-width: 0 0 1px;
   border-radius: 30px 30px 0 0;
   box-shadow: none;
-}
-
-.appMark {
-  display: grid;
-  grid-template-columns: repeat(2, 9px);
-  gap: 3px;
-}
-
-.appMark i {
-  width: 9px;
-  height: 9px;
-  border-radius: 3px;
-  background: var(--ink);
-}
-
-.appMark i:nth-child(2) {
-  background: var(--mint);
 }
 
 .appName {

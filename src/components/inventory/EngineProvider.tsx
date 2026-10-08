@@ -7,7 +7,7 @@ import { alertsOf, productViews, summaryOf, type ProductView, type SimpleAlert, 
 import { getDataset } from "@/domain/generator";
 import { salesSummary, type SalesSummary } from "@/domain/perf";
 import type { Movement } from "@/domain/types";
-import { useBlackCrm } from "@/store/blackCrm";
+import { useCrowCrm } from "@/store/crowCrm";
 
 interface EngineContextValue {
   engine: Engine;
@@ -28,10 +28,10 @@ const EngineContext = createContext<EngineContextValue | null>(null);
  * en vivo no recalcula nada por sí solo: solo los eventos y las acciones.
  */
 export function EngineProvider({ children }: { children: ReactNode }) {
-  const asOf = useBlackCrm((s) => s.asOf);
-  const extra = useBlackCrm((s) => s.extra);
-  const orders = useBlackCrm((s) => s.orders);
-  const decisions = useBlackCrm((s) => s.decisions);
+  const asOf = useCrowCrm((s) => s.asOf);
+  const extra = useCrowCrm((s) => s.extra);
+  const orders = useCrowCrm((s) => s.orders);
+  const decisions = useCrowCrm((s) => s.decisions);
   const value = useMemo(() => {
     const extraByKey = groupExtra(extra);
     const engine = computeEngine({ asOf, extra: extraByKey, orders, decisions });

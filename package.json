@@ -1,8 +1,8 @@
 {
-  "name": "black-crm",
+  "name": "crow-crm",
   "version": "0.1.0",
   "private": true,
-  "description": "Black CRM — demo conceptual de Black Crow: sistema inteligente de inventario, stock y pronóstico de demanda.",
+  "description": "Crow CRM — demo conceptual de Black Crow: sistema inteligente de inventario, stock y pronóstico de demanda.",
   "engines": {
     "node": ">=22.12.0"
   },
